@@ -1,6 +1,6 @@
 {
   "name": "pure-file-uploader",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "author": "Jan Jakubik",
   "preferGlobal": true,
@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pantalejmon/lss-mqtt"
+    "url": "https://github.com/pantalejmon/pure-file-uploader"
   },
   "scripts": {
     "prepare": "npm run prebuild && npm run build",
