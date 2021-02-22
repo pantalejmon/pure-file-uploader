@@ -1,0 +1,14 @@
+[
+  {
+    "regex": "/^test1([a-zA-Z0-9]?)+\\.(csv)$/",
+    "status": false
+  },
+  {
+    "regex": "/^test2([a-zA-Z0-9]?)+\\.(csv)$/",
+    "status": false
+  },
+  {
+    "regex": "/^test3([a-zA-Z0-9]?)+\\.(csv)$/",
+    "status": false
+  }
+]

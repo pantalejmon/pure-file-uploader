@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-import {join} from "path";
-
 const app = require('../dist/main');
 const minimist = require('minimist');
 const colors = require('colors/safe');
 const packageInfo = require('./../package.json');
+const fs = require("fs");
 const argv = minimist(process.argv.slice(2));
 
 console.log([
@@ -44,8 +43,11 @@ if (!!argv.V || !!argv.version) {
 }
 
 let port = argv.p || argv.port || parseInt(process.env.PORT, 10);
-let target = argv.t || argv.target || process.env.UPLOAD_TARGET || join(__dirname, '..', 'uploaded')
-app.bootstrap(target, port)
+let target = argv.t || argv.target || process.env.UPLOAD_TARGET || '/tmp/files'
+
+let regex =JSON.parse( fs.readFileSync(argv.r || argv.regex || 'regex.json'));
+
+app.bootstrap(target, regex, port)
 
 if (process.platform === 'win32') {
     require('readline').createInterface({

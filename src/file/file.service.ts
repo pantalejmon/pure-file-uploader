@@ -1,27 +1,13 @@
 import {Injectable} from '@nestjs/common';
 import {existsSync, promises} from "fs";
 import {resolve} from "path";
-import {UPLOAD_TARGET} from "../main";
+import {REGEX, UPLOAD_TARGET} from "../main";
 import {Response} from "express";
 
 @Injectable()
 export class FileService {
 
-    regexArray = [
-        {
-            regex: /^test1([a-zA-Z0-9]?)+\.(csv)$/,
-            status: false
-        },
-
-        {
-            regex: /^test2([a-zA-Z0-9]?)+\.(csv)$/,
-            status: false
-        },
-        {
-            regex: /^test3([a-zA-Z0-9]?)+\.(csv)$/,
-            status: false
-        }
-    ]
+    regexArray = REGEX;
 
     constructor() {
         if (!existsSync(UPLOAD_TARGET)) {
