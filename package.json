@@ -1,6 +1,6 @@
 {
   "name": "pure-file-uploader",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "author": "Jan Jakubik",
   "preferGlobal": true,
@@ -11,17 +11,20 @@
     "type": "git",
     "url": "https://github.com/pantalejmon/pure-file-uploader"
   },
+
+  "bin": {
+    "pure-file-uploader": "bin/pure-file-uploader"
+  },
+
   "scripts": {
     "prepare": "npm run prebuild && npm run build",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "dev": "nest start --watch",
     "api:debug": "nest start --debug --watch",
-    "start": "node dist/main"
+    "start": "node bin/pure-file-uploader"
   },
-  "bin": {
-    "pure-file-uploader": "./bin/pure-file-uploader.js"
-  },
+
   "dependencies": {
     "@nestjs/common": "^7.6.5",
     "@nestjs/core": "^7.6.5",
