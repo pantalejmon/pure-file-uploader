@@ -1,4 +1,4 @@
-const app = require("../dist/main");
+const app = require('../dist/main');
 const minimist = require('minimist');
 const colors = require('colors/safe');
 const packageInfo = require('./../package.json');
