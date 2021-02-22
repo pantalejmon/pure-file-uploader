@@ -1,6 +1,6 @@
 {
   "name": "pure-file-uploader",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "author": "Jan Jakubik",
   "preferGlobal": true,
@@ -20,7 +20,7 @@
     "start": "node dist/main"
   },
   "bin": {
-    "pure-file-uploader": "./bin/pure-file-uploader"
+    "pure-file-uploader": "./bin/pure-file-uploader.js"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.5",
