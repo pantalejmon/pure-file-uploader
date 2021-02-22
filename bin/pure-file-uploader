@@ -7,45 +7,32 @@ const packageInfo = require('./../package.json');
 const fs = require("fs");
 const argv = minimist(process.argv.slice(2));
 
-console.log([
-    'pure-file-uploader:',
-    '  PPL 2021',
-    '',
-    '',
-    `version: ${packageInfo.version} `,
-    '',
-].join('\n'));
-
 if (argv.h || argv.help) {
     console.log([
-        'usage: pure-file-uploader [path] [options]',
+        'usage: pure-file-uploader',
         '',
         'options:',
         '  -p --port    Port to use [8080]',
-        '  -V --version Version Info',
-        '  -a           Address to use [0.0.0.0]',
-        '  -s --silent  Suppress log messages from output',
-        '',
-        '  -S --ssl     Enable https.',
-        '  -C --cert    Path to ssl cert file (default: cert.pem).',
-        '  -K --key     Path to ssl key file (default: key.pem).',
+        '  -t --target  Path to folder to store files',
+        '  -r --regex   Input json file with uploadedfilename regex',
         '',
         '  -h --help    Print this list and exit.'
     ].join('\n'));
     process.exit();
 }
 
-if (!!argv.V || !!argv.version) {
-    console.log([
-        'usage: files-upload-server [path] [options]',
-    ].join('\n'));
-    process.exit();
-}
+const port = argv.p || argv.port || parseInt(process.env.PORT, 10) || 8080;
+const target = argv.t || argv.target || process.env.UPLOAD_TARGET || '/tmp/files'
+const regex =JSON.parse( fs.readFileSync(argv.r || argv.regex || `${__dirname}/regex.json`));
 
-let port = argv.p || argv.port || parseInt(process.env.PORT, 10);
-let target = argv.t || argv.target || process.env.UPLOAD_TARGET || '/tmp/files'
-
-let regex =JSON.parse( fs.readFileSync(argv.r || argv.regex || 'regex.json'));
+console.log([
+    colors.green('PURE FILE UPLOADER'),
+    colors.blue('PPL 2021'),
+    colors.yellow(`Uploader: http://localhost:${port}`),
+    colors.yellow(`Uploaded files: http://localhost:${port}/uploaded`),
+    '',
+    `version: ${packageInfo.version} `
+].join('\n'));
 
 app.bootstrap(target, regex, port)
 
