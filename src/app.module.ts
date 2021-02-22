@@ -3,7 +3,6 @@ import {join} from "path";
 import {ServeStaticModule} from "@nestjs/serve-static";
 import {FileController} from './file/file.controller';
 import {FileService} from './file/file.service';
-import {UPLOAD_TARGET} from "./main";
 
 export const API = process.env.API_URL || `api`;
 

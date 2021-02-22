@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import {join} from "path";
+
 const app = require('../dist/main');
 const minimist = require('minimist');
 const colors = require('colors/safe');
@@ -42,8 +44,8 @@ if (!!argv.V || !!argv.version) {
 }
 
 let port = argv.p || argv.port || parseInt(process.env.PORT, 10);
-
-app.bootstrap(port)
+let target = argv.t || argv.target || process.env.UPLOAD_TARGET || join(__dirname, '..', 'uploaded')
+app.bootstrap(target, port)
 
 if (process.platform === 'win32') {
     require('readline').createInterface({
