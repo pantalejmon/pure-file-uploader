@@ -1,12 +1,16 @@
 {
   "name": "pure-file-uploader",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "",
   "author": "Jan Jakubik",
   "preferGlobal": true,
   "main": "dist/index.js",
   "private": false,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pantalejmon/lss-mqtt"
+  },
   "scripts": {
     "prepare": "npm run prebuild && npm run build",
     "prebuild": "rimraf dist",
