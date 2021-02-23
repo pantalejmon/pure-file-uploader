@@ -17,6 +17,7 @@ export class FileService {
     }
 
     async saveCorrectFiles(files: Array<Express.Multer.File>, res: Response) {
+        this.regexArray = REGEX;
         files = files.filter(file => !!file)
         let filesToAdd = [];
 
