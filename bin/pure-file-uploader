@@ -14,6 +14,7 @@ if (argv.h || argv.help) {
         'options:',
         '  -p --port    Port to use [8080]',
         '  -t --target  Path to folder to store files',
+        '  -v --view    Optional diffrent directory to display',
         '  -r --regex   Input json file with uploadedfilename regex',
         '',
         '  -h --help    Print this list and exit.'
@@ -23,7 +24,8 @@ if (argv.h || argv.help) {
 
 const port = argv.p || argv.port || parseInt(process.env.PORT, 10) || 8080;
 const target = argv.t || argv.target || process.env.UPLOAD_TARGET || '/tmp/files'
-const regex =JSON.parse( fs.readFileSync(argv.r || argv.regex || `${__dirname}/regex.json`));
+const view = argv.v || argv.view || target;
+const regex = JSON.parse(fs.readFileSync(argv.r || argv.regex || `${__dirname}/regex.json`));
 
 console.log([
     colors.green('PURE FILE UPLOADER'),
@@ -34,7 +36,7 @@ console.log([
     `version: ${packageInfo.version} `
 ].join('\n'));
 
-app.bootstrap(target, regex, port)
+app.bootstrap(target, regex, port, view)
 
 if (process.platform === 'win32') {
     require('readline').createInterface({

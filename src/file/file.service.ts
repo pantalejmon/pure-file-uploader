@@ -3,12 +3,12 @@ import {existsSync, promises} from "fs";
 import {resolve} from "path";
 import {REGEX, UPLOAD_TARGET} from "../main";
 import {Response} from "express";
-
+import {cloneDeep} from 'lodash';
 
 @Injectable()
 export class FileService {
 
-    regexArray;
+    readonly baseRegexArray = REGEX;
     constructor() {
         if (!existsSync(UPLOAD_TARGET)) {
             promises.mkdir(UPLOAD_TARGET);
@@ -16,12 +16,13 @@ export class FileService {
     }
 
     async saveCorrectFiles(files: Array<Express.Multer.File>, res: Response) {
-        Object.assign(this.regexArray, REGEX)
+        const regexArray = cloneDeep(this.baseRegexArray)
+
         files = files.filter(file => !!file)
         let filesToAdd = [];
 
         files.forEach(file => {
-            this.regexArray.forEach(reg => {
+            regexArray.forEach(reg => {
                 if (this.regexFromString(reg.regex).test(file.originalname)) {
                     if (reg.status) {
 
