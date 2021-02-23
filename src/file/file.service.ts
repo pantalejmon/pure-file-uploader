@@ -8,8 +8,7 @@ import {Response} from "express";
 @Injectable()
 export class FileService {
 
-    regexArray = REGEX;
-
+    regexArray;
     constructor() {
         if (!existsSync(UPLOAD_TARGET)) {
             promises.mkdir(UPLOAD_TARGET);
@@ -17,7 +16,7 @@ export class FileService {
     }
 
     async saveCorrectFiles(files: Array<Express.Multer.File>, res: Response) {
-        this.regexArray = REGEX;
+        Object.assign(this.regexArray, REGEX)
         files = files.filter(file => !!file)
         let filesToAdd = [];
 
